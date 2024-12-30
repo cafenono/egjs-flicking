@@ -23,7 +23,6 @@ import { DEFAULT_PROPS } from "./consts";
 import { FlickingProps } from "./types";
 import ReactRenderer, { ReactRendererOptions } from "./ReactRenderer";
 import StrictPanel from "./StrictPanel";
-import NonStrictPanel from "./NonStrictPanel";
 import ViewportSlot from "./ViewportSlot";
 import ReactElementProvider from "./ReactElementProvider";
 
@@ -31,7 +30,7 @@ class Flicking extends React.Component<Partial<FlickingProps & FlickingOptions>>
   public static defaultProps: FlickingProps = DEFAULT_PROPS;
 
   @withFlickingMethods protected _vanillaFlicking: VanillaFlicking;
-  private _panels: React.RefObject<StrictPanel | NonStrictPanel | HTMLDivElement>[] = [];
+  private _panels: React.RefObject<StrictPanel | HTMLDivElement>[] = [];
   protected _pluginsDiffer: ListDiffer<any>;
   protected _jsxDiffer: ListDiffer<React.ReactElement>;
   protected _viewportElement: HTMLElement;
@@ -184,7 +183,7 @@ class Flicking extends React.Component<Partial<FlickingProps & FlickingOptions>>
     );
   }
 
-  private _createPanelRefs(props: this["props"], children: Array<React.ReactElement<any>>): React.RefObject<StrictPanel | NonStrictPanel | HTMLDivElement>[] {
+  private _createPanelRefs(props: this["props"], children: Array<React.ReactElement<any>>): React.RefObject<StrictPanel | HTMLDivElement>[] {
     const panelsPerView = props.panelsPerView ?? -1;
 
     return panelsPerView > 0 && !!props.virtual
@@ -336,9 +335,7 @@ class Flicking extends React.Component<Partial<FlickingProps & FlickingOptions>>
         : getRenderingPanels(vanillaFlicking, diff(origChildren, origChildren))
       : origChildren;
 
-    return this.props.useFindDOMNode
-      ? children.map((child, idx) => <NonStrictPanel key={child.key!} ref={this._panels[idx] as any}>{child}</NonStrictPanel>)
-      : children.map((child, idx) => <StrictPanel key={child.key!} ref={this._panels[idx] as any}>{child}</StrictPanel>)
+    return children.map((child, idx) => <StrictPanel key={child.key!} ref={this._panels[idx] as any}>{child}</StrictPanel>);
   }
 
   private _isFragment(child: React.ReactElement) {

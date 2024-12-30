@@ -31,7 +31,6 @@ export const DEFAULT_PROPS: FlickingProps = {
   firstPanelSize: "",
   renderOnSameKey: false,
   plugins: [],
-  useFindDOMNode: false,
   hideBeforeInit: false,
   onReady: (e: ReadyEvent) => {},
   onBeforeResize: (e: BeforeResizeEvent) => {},

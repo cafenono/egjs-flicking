@@ -6,7 +6,6 @@ import { ExternalRenderer, PanelOptions, RendererOptions, getFlickingAttached } 
 
 import ReactFlicking from "./Flicking";
 import StrictPanel from "./StrictPanel";
-import NonStrictPanel from "./NonStrictPanel";
 
 export interface ReactRendererOptions extends RendererOptions {
   reactFlicking: ReactFlicking;
@@ -71,7 +70,7 @@ class ReactRenderer extends ExternalRenderer {
     this._panels = this._strategy.collectPanels(flicking, reactPanels);
   }
 
-  protected _createPanel(externalComponent: StrictPanel | NonStrictPanel | HTMLDivElement, options: PanelOptions) {
+  protected _createPanel(externalComponent: StrictPanel | HTMLDivElement, options: PanelOptions) {
     return this._strategy.createPanel(externalComponent, options);
   }
 }

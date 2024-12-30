@@ -32,7 +32,6 @@ export interface FlickingProps {
   renderOnSameKey: boolean;
   plugins: Plugin[];
   status?: Status;
-  useFindDOMNode: boolean;
   hideBeforeInit: boolean;
   firstPanelSize?: string;
   onReady: (e: ReadyEvent<ReactFlicking>) => any;

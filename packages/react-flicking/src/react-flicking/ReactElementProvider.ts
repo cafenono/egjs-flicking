@@ -4,15 +4,14 @@
  */
 import { ElementProvider } from "@egjs/flicking";
 import StrictPanel from "./StrictPanel";
-import NonStrictPanel from "./NonStrictPanel";
 
 class ReactElementProvider implements ElementProvider {
-  private _el: StrictPanel | NonStrictPanel;
+  private _el: StrictPanel;
 
   public get element() { return this._el.nativeElement; }
   public get rendered() { return this._el.rendered; }
 
-  public constructor(el: StrictPanel | NonStrictPanel) {
+  public constructor(el: StrictPanel) {
     this._el = el;
   }
 
